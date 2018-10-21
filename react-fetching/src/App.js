@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
+import axios from 'axios';
+
+
 class App extends Component {
   state = {users: [],isLoading:true};
     componentDidMount() {
-        setTimeout(() => {
+        //Native fetch
+
+        /*setTimeout(() => {
             fetch('https://jsonplaceholder.typicode.com/users')
                 .then(data => data.json())
                 .then(users => {
@@ -12,7 +17,20 @@ class App extends Component {
                         isLoading: false
                     });
                 })
+        },3000)*/
+
+        //With Axios
+        setTimeout(() => {
+            axios.get('https://jsonplaceholder.typicode.com/users')
+                .then(users => users.data)
+                .then(users => {
+                    this.setState({
+                        users,
+                        isLoading: false
+                    });
+                })
         },3000)
+
     }
 
     render() {
