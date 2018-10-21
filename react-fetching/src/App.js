@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 
 import Posts from "./components/Posts";
+import Comments from "./components/Comments";
 
 class App extends Component {
   state = {
@@ -70,6 +71,10 @@ class App extends Component {
               </div>
           ) : null
         }
+        <hr/>
+          <Comments {...this.state}/>
+        <hr/>
+
         <Posts {...this.state} />
       </div>
     );

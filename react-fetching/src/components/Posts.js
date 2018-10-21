@@ -17,5 +17,5 @@ class Posts extends Component {
     }
 }
 
-export default LoaderHOC(Posts);
+export default LoaderHOC(Posts,'posts');
 
