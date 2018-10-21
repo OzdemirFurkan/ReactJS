@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 
+import Posts from "./components/Posts";
 
 class App extends Component {
-  state = {users: [],isLoading:true};
+  state = {
+      users: [],
+      posts: [],
+      isLoading:true
+  };
     componentDidMount() {
         //Native fetch
-
         /*setTimeout(() => {
             fetch('https://jsonplaceholder.typicode.com/users')
                 .then(data => data.json())
@@ -22,15 +26,25 @@ class App extends Component {
         //With Axios
         setTimeout(() => {
             axios.get('https://jsonplaceholder.typicode.com/users')
-                .then(users => users.data)
+                 .then(users => users.data)
                 .then(users => {
                     this.setState({
                         users,
                         isLoading: false
                     });
                 })
-        },3000)
+        },3000);
 
+        axios.get('https://jsonplaceholder.typicode.com/posts')
+            .then(posts => posts.data)
+            .then(posts => {
+                setTimeout(() => {
+                    this.setState({
+                        posts,
+                        isLoading: false
+                    });
+                }, 2000)
+            })
     }
 
     render() {
@@ -45,6 +59,7 @@ class App extends Component {
               </div>
           ) : null
         }
+        <Posts {...this.state} />
       </div>
     );
   }
