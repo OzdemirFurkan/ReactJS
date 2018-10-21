@@ -4,15 +4,27 @@ import axios from 'axios';
 
 import Posts from "./components/Posts";
 import Comments from "./components/Comments";
+import FirstNumber from "./components/FirstNumber";
+import SecondNumber from "./components/SecondNumber";
+
 
 class App extends Component {
   state = {
       users: [],
       posts: [],
       comments: [],
+      firstNumber: Math.random(),
+      secondNumber: Math.random(),
       isLoading:true
   };
     componentDidMount() {
+        setInterval(() => {
+            this.setState({
+                firstNumber: Math.random(),
+            });
+        }, 1000);
+
+
         //Native fetch
         /*setTimeout(() => {
             fetch('https://jsonplaceholder.typicode.com/users')
@@ -63,6 +75,13 @@ class App extends Component {
         const {isLoading} = this.state;
     return (
       <div className={"card-profile"}>
+          <FirstNumber firstNumber={this.state.firstNumber}/>
+          <br/>
+          <SecondNumber secondNumber={this.state.secondNumber}/>
+          <br/>
+
+        <hr/>
+
         <h1>Users</h1>
         { isLoading ? 'Loading...' : '' }
         {!isLoading ? this.state.users.map(user =>
