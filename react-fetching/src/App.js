@@ -8,6 +8,7 @@ class App extends Component {
   state = {
       users: [],
       posts: [],
+      comments: [],
       isLoading:true
   };
     componentDidMount() {
@@ -41,10 +42,20 @@ class App extends Component {
                 setTimeout(() => {
                     this.setState({
                         posts,
-                        isLoading: false
                     });
                 }, 2000)
             })
+
+        axios.get('https://jsonplaceholder.typicode.com/comments')
+            .then(comments => comments.data)
+            .then(comments=> {
+                setTimeout(() => {
+                    this.setState({
+                        comments,
+                    });
+                }, 1000)
+            })
+
     }
 
     render() {

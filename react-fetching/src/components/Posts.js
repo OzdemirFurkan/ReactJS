@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LoaderHOC from "./LoaderHOC";
 
 class Posts extends Component {
     render() {
@@ -6,7 +7,6 @@ class Posts extends Component {
             <div>
                 <h2>Posts</h2>
                 {
-                    this.props.isLoading ? <div>Loading...</div> :
                         this.props.posts.map(post =>
                             <div key={post.id}>
                                 {post.title}
@@ -17,5 +17,5 @@ class Posts extends Component {
     }
 }
 
-export default Posts;
+export default LoaderHOC(Posts);
 
